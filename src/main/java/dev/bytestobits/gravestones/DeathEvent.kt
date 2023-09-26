@@ -36,6 +36,7 @@ class DeathEvent(private val plugin: Gravestones): Listener {
         plugin.logger.info("Saved inventory of ${entity.name} to Gravestone at ${entity.location}")
 
         block.type = Material.STONE_BRICK_WALL
+        Holograms.putHologram(Location(block.world, block.x.toDouble(), block.y.toDouble(), block.z.toDouble()), "&f&l${entity.name}'s Gravestone")
 
         entity.sendMessage(plugin.colorMessage("&eA &7Gravestone &ewas created at ${block.location.x.toInt()}, ${block.location.y.toInt()}, ${block.location.z.toInt()}"))
     }
@@ -66,6 +67,7 @@ class DeathEvent(private val plugin: Gravestones): Listener {
                         block.type = Material.AIR
                         InventoryToJson.giveToPlayer(resultSet.getString("items"), event.player)
                         plugin.database.removeGravestone(resultSet.getInt("id"))
+                        Holograms.removeHologram(Location(block.world, block.x.toDouble(), block.y.toDouble(), block.z.toDouble()))
                         event.player.sendMessage(plugin.colorMessage("&aYou have opened your gravestone!"))
                     }
                 }
