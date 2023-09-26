@@ -1,0 +1,13 @@
+name: Gravestones
+version: '${project.version}'
+main: dev.bytestobits.gravestones.Gravestones
+api-version: 1.20
+commands:
+  graves:
+    aliases: [grave, gravestone, gravestones]
+    permission: gravestones.use
+    permission-message: §cYou cannot use this command
+permissions:
+  gravestones.use:
+      description: Allows you to use /graves
+      default: true
