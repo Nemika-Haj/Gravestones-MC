@@ -6,12 +6,12 @@ import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 
 class Gravestones : JavaPlugin() {
-    val database = Core(this);
+    val database = Core(this)
 
     fun colorMessage(text: String) = text.replace("&", "§")
 
     override fun onEnable() {
-        Bukkit.getPluginCommand("grave")?.setExecutor(GraveCommand(this))
+        Bukkit.getPluginCommand("graves")?.setExecutor(GraveCommand(this))
         Bukkit.getPluginManager().registerEvents(DeathEvent(this), this)
     }
 
