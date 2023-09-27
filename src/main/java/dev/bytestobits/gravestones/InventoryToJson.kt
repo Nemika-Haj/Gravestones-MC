@@ -34,6 +34,10 @@ object InventoryToJson {
                     jsonItem.addProperty("durability", durability)
                 }
 
+                if(it.itemMeta != null && it.itemMeta.hasCustomModelData()) {
+                    jsonItem.addProperty("customData", it.itemMeta.customModelData)
+                }
+
                 jsonItems.add(jsonItem)
             }
         }
@@ -62,6 +66,11 @@ object InventoryToJson {
             if (itemStack.type.maxDurability > 0) {
                 val meta = itemStack.itemMeta as Damageable
                 meta.damage = jsonObject.get("durability").asInt
+            }
+
+            if(jsonObject.has("customData")) {
+                val meta = itemStack.itemMeta
+                meta.setCustomModelData(jsonObject.get("customData").asInt)
                 itemStack.itemMeta = meta
             }
 

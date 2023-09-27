@@ -77,7 +77,7 @@ class DeathEvent(private val plugin: Gravestones): Listener {
 
     private fun findNearestAirBlock(startLocation: Location): Block? {
         val world = startLocation.world
-        val radius = 10
+        val radius = 30
 
         for (x in 0..radius) {
             for (y in 0..radius) {
@@ -85,7 +85,7 @@ class DeathEvent(private val plugin: Gravestones): Listener {
                     val blockLocation = startLocation.clone().add(x.toDouble(), y.toDouble(), z.toDouble())
                     val block = world.getBlockAt(blockLocation)
 
-                    if (block.type == Material.AIR) {
+                    if (block.type == Material.AIR || block.type == Material.WATER || block.type == Material.LAVA) {
                         return block.location.block
                     }
                 }
